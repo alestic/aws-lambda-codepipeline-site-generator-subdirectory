@@ -56,5 +56,36 @@ CloudFormation template, specify:
 correctly, you may accidentally publish content in your Git repository
 that you did not intend to make public.
 
+Here is a sample stack creation command using aws-cli:
+
+    domain=example.com
+    email=yourrealemail@anotherdomain.com
+
+    template_url=https://s3.amazonaws.com/run.alestic.com/cloudformation/aws-git-backed-static-website-cloudformation.yml
+    stackname=${domain/./-}-$(date +%Y%m%d-%H%M%S)
+    region=us-east-1
+
+    aws cloudformation create-stack \
+      --region "$region" \
+      --stack-name "$stackname" \
+      --capabilities CAPABILITY_IAM \
+      --template-url "$template_url" \
+      --tags "Key=Name,Value=$stackname" \
+      --parameters \
+        "ParameterKey=DomainName,ParameterValue=$domain" \
+        "ParameterKey=NotificationEmail,ParameterValue=$email" \
+        "ParameterKey=GeneratorLambdaFunctionS3Bucket,ParameterValue=run.alestic.com" \
+        "ParameterKey=GeneratorLambdaFunctionS3Key,ParameterValue=lambda/aws-lambda-codepipeline-site-generator-subdirectory.zip" \
+        "ParameterKey=GeneratorLambdaFunctionUserParameters,ParameterValue=htdocs" \
+    echo region=$region stackname=$stackname
+
+The important point in the above command is the last three
+"Generator*" parameters, which specify the location of the
+Subdirectory AWS Lambda static site generator plugin.
+
+See the main [AWS Git-backed static website stack][stack]
+documentation for more details on how to work with the stack once it
+is launched.
+
 [stack]: https://github.com/alestic/aws-git-backed-static-website
 [identity]: https://github.com/alestic/aws-lambda-codepipeline-site-generator-identity

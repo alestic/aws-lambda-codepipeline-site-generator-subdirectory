@@ -1,5 +1,5 @@
 
-# Static site generator plugin: Subdirectory (copy part of tree to out)
+# Static site generator plugin: Subdirectory (copy part of tree)
 
 This is a static site generator plugin for the [AWS Git-backed static
 website stack][stack]. This plugin copies an entire subdirectory of

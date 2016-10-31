@@ -1,6 +1,6 @@
 #!/usr/bin/python2.7
 #
-# AWS Lambda function static site generator plugin: Identity transformation
+# AWS Lambda function static site generator plugin: Subdirectory
 #
 # This Lambda function is invoked by CodePipeline. It performs these actions:
 # - Download file from the CodePipeline artifact S3 bucket and unZIP
@@ -94,9 +94,11 @@ def handler(event, context):
     return "complete"
 
 def generate_static_site(source_dir, site_dir, user_parameters):
-    print("user_parameters: " + user_parameters)
-
-    # Identity transformation: Copy input to output
-    command = "cp -av " + source_dir + "/. " + site_dir + "/"
+    # Subdirectory: Copy subdirectory of input to output
+    #TBD: Sanity check subdirectory
+    #TBD: Verify subdirectory exists
+    sub_dir = user_parameters
+    print("Copying subdirectory: " + sub_dir)
+    command = "cp -av " + source_dir + "/" + sub_dir + "/. " + site_dir + "/"
     print(command)
     print(os.popen(command).read())

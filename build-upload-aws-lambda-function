@@ -5,7 +5,7 @@
 # Usage: ./build-upload-aws-lambda-function S3BUCKET S3KEY
 #
 # For example:
-# ./build-upload-aws-lambda-function run.alestic.com lambda/aws-lambda-codepipeline-site-generator-identity.zip
+# ./build-upload-aws-lambda-function run.alestic.com lambda/aws-lambda-codepipeline-site-generator-subdirectory.zip
 #
 
 s3bucket=${1:?Specify target S3 bucket name}
@@ -17,7 +17,7 @@ zipfile=$tmpdir/lambda.zip
 
 zip -r9 $zipfile index.py
 
-aws s3 cp --acl=public-read $zipfile $target
+aws s3 cp --acl public-read $zipfile $target
 
 # Clean up
 rm -r $tmpdir

@@ -75,7 +75,7 @@ Here is a sample stack creation command using aws-cli:
         "ParameterKey=DomainName,ParameterValue=$domain" \
         "ParameterKey=NotificationEmail,ParameterValue=$email" \
         "ParameterKey=GeneratorLambdaFunctionS3Bucket,ParameterValue=run.alestic.com" \
-        "ParameterKey=GeneratorLambdaFunctionS3Key,ParameterValue=lambda/aws-lambda-codepipeline-site-generator-subdirectory.zip" \
+        "ParameterKey=GeneratorLambdaFunctionS3Key,ParameterValue=lambda/aws-lambda-site-generator-subdirectory.zip" \
         "ParameterKey=GeneratorLambdaFunctionUserParameters,ParameterValue=htdocs" \
     echo region=$region stackname=$stackname
 

@@ -5,7 +5,7 @@
 # Usage: ./build-upload-aws-lambda-function S3BUCKET S3KEY
 #
 # For example:
-# ./build-upload-aws-lambda-function run.alestic.com lambda/aws-lambda-codepipeline-site-generator-subdirectory.zip
+# ./build-upload-aws-lambda-function run.alestic.com lambda/aws-lambda-site-generator-subdirectory.zip
 #
 
 s3bucket=${1:?Specify target S3 bucket name}

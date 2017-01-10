@@ -82,7 +82,7 @@ def handler(event, context):
         code_pipeline.put_job_success_result(jobId=job_id)
 
     except Exception as e:
-        print(e)
+        print("ERROR: " + repr(e))
         traceback.print_exc()
         # Tell CodePipeline we failed
         code_pipeline.put_job_failure_result(jobId=job_id, failureDetails={'message': e, 'type': 'JobFailed'})
